@@ -9,16 +9,18 @@ epkgs // {
   tsc = _callPackage ./pkgs/tsc { };
 
   # eglot use libraries cames with emacs.
-  eglot = (epkgs.eglot.overrideAttrs (
-    old: rec {
-      pname = "eglot";
-      ename = "eglot";
-      version = "999";
-      src = pkgs.fetchFromGitHub {
-        inherit (lib.importJSON ./pkgs/eglot/version.json) owner repo rev sha256;
-      };
-    }
-  )).override
+  # eglot = epkgs.eglot.overrideAttrs (
+  #   old: rec {
+  #     pname = "eglot";
+  #     ename = "eglot";
+  #     version = "999";
+  #     src = pkgs.fetchFromGitHub {
+  #       inherit (lib.importJSON ./pkgs/eglot/version.json) owner repo rev sha256;
+  #     };
+  #   }
+  # );
+
+  eglot = epkgs.eglot.override
     {
       xref = null;
       project = null;
