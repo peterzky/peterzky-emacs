@@ -49,8 +49,8 @@
     "nixpkgs": {
       "locked": {
         "lastModified": 0,
-        "narHash": "sha256-OZEAcIQPZbGtCYVdBP+MjZL+CISIe4SHqOsd/z6kkQw=",
-        "path": "/nix/store/c9darryv1xdymjgiqy4c4qnf9kpai8dz-source",
+        "narHash": "sha256-xwj7ULSyWO1Gh1kj9KpH6oLKAm6FZGDp+LcfWz5gBVo=",
+        "path": "/nix/store/s610z19v8h6k5p2qycjyi55igln5cmks-source",
         "type": "path"
       },
       "original": {
