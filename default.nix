@@ -1,7 +1,8 @@
 { emacsWithPackagesFromUsePackage, writeText, runCommand, emacsGit, emacs-src }:
 let
-  org-file = pkgs.writeText "default.org"
-    (builtins.readFile ../dotfiles/emacs/init.org);
+  org-file = writeText "default.org"
+    (builtins.readFile ./init.org);
+  
   emacs = emacsGit.overrideAttrs (_: rec {
     src = emacs-src;
   });
@@ -24,4 +25,4 @@ emacsWithPackagesFromUsePackage {
     emacs-config
   ];
 
-};
+}
