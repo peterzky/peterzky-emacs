@@ -4,7 +4,8 @@
   inputs =
     {
       nixpkgs = {
-        url = "github:nixos/nixpkgs/master";
+        # url = "github:nixos/nixpkgs/master";
+        url = "nixpkgs";
       };
 
       flake-utils.url = "github:numtide/flake-utils";
@@ -32,8 +33,11 @@
         in
         rec
         {
-          defaultPackage = pkgs.callPackage ./default.nix { inherit emacs-src; };
-
+          defaultPackage = packages.peterzky-emacs;
+          packages = rec {
+            peterzky-emacs = pkgs.callPackage ./default.nix { inherit emacs-src epkgs-override; };
+            epkgs-override = pkgs.callPackage ./override.nix { };
+          };
         }
       );
 }

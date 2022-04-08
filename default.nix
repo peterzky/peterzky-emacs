@@ -1,8 +1,8 @@
-{ emacsWithPackagesFromUsePackage, writeText, runCommand, emacsGit, emacs-src }:
+{ emacsWithPackagesFromUsePackage, writeText, runCommand, emacsGit, emacs-src, epkgs-override }:
 let
   org-file = writeText "default.org"
     (builtins.readFile ./init.org);
-  
+
   emacs = emacsGit.overrideAttrs (_: rec {
     src = emacs-src;
   });
@@ -20,7 +20,7 @@ in
 emacsWithPackagesFromUsePackage {
   config = builtins.readFile "${emacs-config}/share/emacs/site-lisp/default.el";
   package = emacs;
-  # override = pkgs.my-epkg-overrides;
+  override = epkgs-override;
   extraEmacsPackages = epkgs: with epkgs; [
     emacs-config
   ];
