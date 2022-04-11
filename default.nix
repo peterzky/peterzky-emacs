@@ -1,10 +1,22 @@
-{ emacsWithPackagesFromUsePackage, writeText, runCommand, emacsGit, emacs-src, epkgs-override }:
+{ emacsWithPackagesFromUsePackage
+, writeText
+, symlinkJoin
+, runCommand
+, emacsGit
+, universal-ctags
+, global
+, emacs-src
+, epkgs-override
+}:
 let
   org-file = writeText "default.org"
     (builtins.readFile ./init.org);
 
-  emacs = emacsGit.overrideAttrs (_: rec {
+  emacs = emacsGit.overrideAttrs (old: rec {
     src = emacs-src;
+    postInstall = old.postInstall + ''
+      mv $out/bin/ctags $out/bin/emacs-ctags
+    '';
   });
 
   emacs-config = runCommand "emacs-config" { } ''
@@ -16,13 +28,19 @@ let
     rm $SITE_LISP/default.org
   '';
 
+  emacs-with-packages =
+    emacsWithPackagesFromUsePackage {
+      config = builtins.readFile "${emacs-config}/share/emacs/site-lisp/default.el";
+      package = emacs;
+      override = epkgs-override;
+      extraEmacsPackages = epkgs: with epkgs; [ emacs-config ];
+    };
 in
-emacsWithPackagesFromUsePackage {
-  config = builtins.readFile "${emacs-config}/share/emacs/site-lisp/default.el";
-  package = emacs;
-  override = epkgs-override;
-  extraEmacsPackages = epkgs: with epkgs; [
-    emacs-config
+symlinkJoin {
+  name = "emacs-bundle";
+  paths = [
+    emacs-with-packages
+    universal-ctags
+    global
   ];
-
 }

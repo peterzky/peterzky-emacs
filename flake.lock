@@ -2,11 +2,11 @@
   "nodes": {
     "emacs-overlay": {
       "locked": {
-        "lastModified": 1649413644,
-        "narHash": "sha256-pRCXQYOxWP0RkZc1Mmeanxxy+l2d2lmHxcLhP1aolfs=",
+        "lastModified": 1649586061,
+        "narHash": "sha256-gFAHrrY0i71WIP16FGo3pgNKTZ5m5L6FtQsOYpne9gk=",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "2264d27fe9048a982411fda879ed638119f5cbbc",
+        "rev": "16262a84ef07fb0e8cfc592b65d786b086840065",
         "type": "github"
       },
       "original": {
@@ -18,11 +18,11 @@
     "emacs-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1649337371,
-        "narHash": "sha256-Bh6Q95NxptrFp6wzZ8s455xtMkMIggg8zJ4qtH/KWos=",
+        "lastModified": 1649500138,
+        "narHash": "sha256-fgYVT0O535jn8/F+G3xEzU6wrl3lVnyFW2/kmUSSvrg=",
         "ref": "master",
-        "rev": "3b411417086ceb2ce3838160d01c6f250e47bbf3",
-        "revCount": 155410,
+        "rev": "8b3748c234e8be8c2b34c263cb216fef5a5f2279",
+        "revCount": 155446,
         "type": "git",
         "url": "https:///mirrors.ustc.edu.cn/emacs.git"
       },
@@ -49,8 +49,8 @@
     "nixpkgs": {
       "locked": {
         "lastModified": 0,
-        "narHash": "sha256-xwj7ULSyWO1Gh1kj9KpH6oLKAm6FZGDp+LcfWz5gBVo=",
-        "path": "/nix/store/s610z19v8h6k5p2qycjyi55igln5cmks-source",
+        "narHash": "sha256-87yWiqYYOfiDXn0SaS8e1tKE28xH+gU8/0b/0N96tX0=",
+        "path": "/nix/store/m7lgi2q2clzm9g23w9063vlqzia36nb4-source",
         "type": "path"
       },
       "original": {

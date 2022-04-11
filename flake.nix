@@ -30,14 +30,15 @@
             config.allowUnfree = true;
             overlays = [ emacs-overlay.overlay ];
           };
+
+          epkgs-override = pkgs.callPackage ./override.nix { };
+
+          peterzky-emacs = pkgs.callPackage ./default.nix { inherit emacs-src epkgs-override; };
         in
         rec
         {
-          defaultPackage = packages.peterzky-emacs;
-          packages = rec {
-            peterzky-emacs = pkgs.callPackage ./default.nix { inherit emacs-src epkgs-override; };
-            epkgs-override = pkgs.callPackage ./override.nix { };
-          };
+          packages.default = peterzky-emacs;
+
         }
       );
 }
