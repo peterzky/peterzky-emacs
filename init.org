@@ -111,6 +111,11 @@ before running _nixos-rebuild --flake .#host switch_
   :ensure t
   :hook (after-init . simple-modeline-mode))
 #+end_src
+** Olivetti
+#+begin_src emacs-lisp
+(use-package olivetti
+  :ensure )
+#+end_src
 * Org Mode
 ** Org Mode
 #+BEGIN_SRC emacs-lisp

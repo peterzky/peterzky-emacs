@@ -33,7 +33,10 @@
 
           epkgs-override = pkgs.callPackage ./override.nix { };
 
-          peterzky-emacs = pkgs.callPackage ./default.nix { inherit emacs-src epkgs-override; };
+          peterzky-emacs = pkgs.callPackage ./default.nix {
+            emacsGit = pkgs.emacsPgtk;
+            inherit emacs-src epkgs-override;
+          };
         in
         rec
         {
