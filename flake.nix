@@ -15,34 +15,34 @@
         inputs = { nixpkgs.follows = "nixpkgs"; };
       };
 
-      emacs-src = {
-        url = "git+https:///mirrors.ustc.edu.cn/emacs.git";
-        flake = false;
-      };
     };
 
-  outputs = { self, nixpkgs, flake-utils, emacs-overlay, emacs-src }:
+  outputs =
+    { self
+    , nixpkgs
+    , flake-utils
+    , emacs-overlay
+    }:
     flake-utils.lib.eachDefaultSystem
       (system:
-        let
-          pkgs = import nixpkgs {
-            inherit system;
-            config.allowUnfree = true;
-            overlays = [ emacs-overlay.overlay ];
-          };
+      let
+        pkgs = import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+          overlays = [ emacs-overlay.overlay ];
+        };
 
-          epkgs-override = pkgs.callPackage ./override.nix { };
+        epkgs-override = pkgs.callPackage ./override.nix { };
 
-          peterzky-emacs = pkgs.callPackage ./default.nix {
-            emacsGit = pkgs.emacsPgtk;
-            inherit emacs-src epkgs-override;
-          };
-        in
-        rec
-        {
-          packages.default = peterzky-emacs;
-
-        }
+        peterzky-emacs = pkgs.callPackage ./default.nix {
+          emacsGit = pkgs.emacsGit;
+          inherit epkgs-override;
+        };
+      in
+      rec
+      {
+        packages.default = peterzky-emacs;
+      }
       );
 }
   

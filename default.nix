@@ -5,7 +5,6 @@
 , emacsGit
 , universal-ctags
 , global
-, emacs-src
 , epkgs-override
 }:
 let
@@ -13,7 +12,6 @@ let
     (builtins.readFile ./init.org);
 
   emacs = emacsGit.overrideAttrs (old: rec {
-    src = emacs-src;
     postInstall = old.postInstall + ''
       mv $out/bin/ctags $out/bin/emacs-ctags
     '';

@@ -83,7 +83,7 @@ before running _nixos-rebuild --flake .#host switch_
 * Appearance
 ** Font
 #+begin_src emacs-lisp
-(add-to-list 'default-frame-alist '(font . "InputMonoCondensed Light:pixelsize=14"))
+(add-to-list 'default-frame-alist '(font . "InputMonoCondensed Light:pixelsize=16"))
 #+end_src
 ** Background
 #+begin_src emacs-lisp
@@ -174,7 +174,7 @@ before running _nixos-rebuild --flake .#host switch_
   (setq org-bullets-bullet-list '("●" "○")))
 
 #+END_SRC
-** Org Roam
+** COMMENT Org Roam
 #+begin_src emacs-lisp
 (use-package org-roam
   :ensure t
