@@ -15,6 +15,10 @@
         inputs = { nixpkgs.follows = "nixpkgs"; };
       };
 
+      emacs-src = {
+        url = "git+https:///mirrors.ustc.edu.cn/emacs.git";
+        flake = false;
+      };
     };
 
   outputs =
@@ -22,6 +26,7 @@
     , nixpkgs
     , flake-utils
     , emacs-overlay
+    , emacs-src
     }:
     flake-utils.lib.eachDefaultSystem
       (system:
@@ -36,7 +41,7 @@
 
         peterzky-emacs = pkgs.callPackage ./default.nix {
           emacsGit = pkgs.emacsPgtk;
-          inherit epkgs-override;
+          inherit epkgs-override emacs-src;
         };
       in
       rec
