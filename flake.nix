@@ -4,11 +4,14 @@
   inputs =
     {
       nixpkgs = {
-        # url = "github:nixos/nixpkgs/master";
-        url = "nixpkgs";
+        url = "github:nixos/nixpkgs/master";
+        # url = "nixpkgs";
       };
 
-      flake-utils.url = "github:numtide/flake-utils";
+      flake-utils = {
+        url = "github:numtide/flake-utils";
+        inputs = { nixpkgs.follows = "nixpkgs"; };
+      };
 
       emacs-overlay = {
         url = "github:nix-community/emacs-overlay";
@@ -48,7 +51,17 @@
       {
         packages.default = peterzky-emacs;
       }
-      );
+      ) // rec {
+      overlay = final: prev: (prev.lib.composeManyExtensions [ emacs-overlay.overlay overlays.peter-emacs ] final prev);
+      overlays.peter-emacs = final: prev: rec {
+        peter-emacs = prev.callPackage ./default.nix {
+          emacsGit = prev.emacsPgtk;
+          epkgs-override = prev.callPackage ./override.nix { };
+          inherit emacs-src;
+        };
+      };
+
+    };
 }
   
 

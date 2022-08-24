@@ -85,7 +85,7 @@ before running _nixos-rebuild --flake .#host switch_
 * Appearance
 ** Font
 #+begin_src emacs-lisp
-(add-to-list 'default-frame-alist '(font . "InputMonoCondensed Light:pixelsize=16"))
+(add-to-list 'default-frame-alist '(font . "InputMonoCondensed Light:pixelsize=14"))
 #+end_src
 ** Background
 #+begin_src emacs-lisp
