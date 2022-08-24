@@ -5,7 +5,6 @@
     {
       nixpkgs = {
         url = "github:nixos/nixpkgs/master";
-        # url = "nixpkgs";
       };
 
       flake-utils = {
@@ -40,11 +39,10 @@
           overlays = [ emacs-overlay.overlay ];
         };
 
-        epkgs-override = pkgs.callPackage ./override.nix { };
-
         peterzky-emacs = pkgs.callPackage ./default.nix {
           emacsGit = pkgs.emacsPgtk;
-          inherit epkgs-override emacs-src;
+          epkgs-override = pkgs.callPackage ./override.nix { };
+          inherit emacs-src;
         };
       in
       rec
@@ -52,7 +50,8 @@
         packages.default = peterzky-emacs;
       }
       ) // rec {
-      overlay = final: prev: (prev.lib.composeManyExtensions [ emacs-overlay.overlay overlays.peter-emacs ] final prev);
+      overlay = final: prev:
+        (prev.lib.composeManyExtensions [ emacs-overlay.overlay overlays.peter-emacs ] final prev);
       overlays.peter-emacs = final: prev: rec {
         peter-emacs = prev.callPackage ./default.nix {
           emacsGit = prev.emacsPgtk;
