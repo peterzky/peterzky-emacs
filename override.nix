@@ -16,4 +16,5 @@ epkgs // {
       jsonrpc = null;
       eldoc = null;
     };
+  tabnine-capf = _callPackage ./pkgs/tabnine-capf { };
 }

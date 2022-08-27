@@ -415,6 +415,11 @@ https://github.com/oantolin/embark/
 	        ))
 
 #+end_src
+** tabnine-capf
+#+begin_src emacs-lisp
+(use-package tabnine-capf
+  :ensure t)
+#+end_src
 * Editing
 ** Smartparens
 #+BEGIN_SRC emacs-lisp
